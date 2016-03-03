@@ -1,5 +1,6 @@
 package com.vilyever.androidcolor;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,10 +9,46 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.vilyever.color.VDColor;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+    final MainActivity self = this;
+
+    private SeekBar alphaSeekBar;
+    public SeekBar getAlphaSeekBar() { if (alphaSeekBar == null) { alphaSeekBar = (SeekBar) self.findViewById(R.id.alphaSeekBar); } return alphaSeekBar; }
+
+    private SeekBar redSeekBar;
+    public SeekBar getRedSeekBar() { if (redSeekBar == null) { redSeekBar = (SeekBar) self.findViewById(R.id.redSeekBar); } return redSeekBar; }
+
+    private SeekBar greenSeekBar;
+    public SeekBar getGreenSeekBar() { if (greenSeekBar == null) { greenSeekBar = (SeekBar) self.findViewById(R.id.greenSeekBar); } return greenSeekBar; }
+
+    private SeekBar blueSeekBar;
+    public SeekBar getBlueSeekBar() { if (blueSeekBar == null) { blueSeekBar = (SeekBar) self.findViewById(R.id.blueSeekBar); } return blueSeekBar; }
+
+//    private SeekBar hueSeekBar;
+//    public SeekBar getHueSeekBar() { if (hueSeekBar == null) { hueSeekBar = (SeekBar) self.findViewById(R.id.hueSeekBar); } return hueSeekBar; }
+//
+//    private SeekBar saturationSeekBar;
+//    public SeekBar getSaturationSeekBar() { if (saturationSeekBar == null) { saturationSeekBar = (SeekBar) self.findViewById(R.id.saturationSeekBar); } return saturationSeekBar; }
+//
+//    private SeekBar valueSeekBar;
+//    public SeekBar getValueSeekBar() { if (valueSeekBar == null) { valueSeekBar = (SeekBar) self.findViewById(R.id.valueSeekBar); } return valueSeekBar; }
+
+    private View colorView;
+    public View getColorView() { if (colorView == null) { colorView = (View) self.findViewById(R.id.colorView); } return colorView; }
+
+    private TextView colorTitleLabel;
+    public TextView getColorTitleLabel() { if (colorTitleLabel == null) { colorTitleLabel = (TextView) self.findViewById(R.id.colorTitleLabel); } return colorTitleLabel; }
+
+    private View invertColorView;
+    public View getInvertColorView() { if (invertColorView == null) { invertColorView = (View) self.findViewById(R.id.invertColorView); } return invertColorView; }
+
+    private TextView invertColorTitleLabel;
+    public TextView getInvertColorTitleLabel() { if (invertColorTitleLabel == null) { invertColorTitleLabel = (TextView) self.findViewById(R.id.invertColorTitleLabel); } return invertColorTitleLabel; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +66,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        int color = VDColor.res(R.color.White);
-        color = VDColor.changeAlpha(color, 0xA0);
-        color = VDColor.changeRed(color, 0x55);
-        color = VDColor.changeGreen(color, 0x10);
-        color = VDColor.changeBlue(color, 0xE0);
-        color = VDColor.changeHSVHue(color, 288.0f);
-        color = VDColor.changeHSVSaturation(color, 0.8f);
-        color = VDColor.changeHSVValue(color, 0.3f);
-        String hexColor = VDColor.getHex(color);
-        System.out.println("hexColor " + hexColor);
+        self.getAlphaSeekBar().setOnSeekBarChangeListener(self);
+//        self.getHueSeekBar().setOnSeekBarChangeListener(self);
+//        self.getSaturationSeekBar().setOnSeekBarChangeListener(self);
+//        self.getValueSeekBar().setOnSeekBarChangeListener(self);
+        self.getRedSeekBar().setOnSeekBarChangeListener(self);
+        self.getGreenSeekBar().setOnSeekBarChangeListener(self);
+        self.getBlueSeekBar().setOnSeekBarChangeListener(self);
     }
 
     @Override
@@ -61,5 +95,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        int color = Color.argb(self.getAlphaSeekBar().getProgress(), self.getRedSeekBar().getProgress(), self.getGreenSeekBar().getProgress(), self.getBlueSeekBar().getProgress());
+        float[] hsv = new float[3];
+//        hsv[0] = self.getHueSeekBar().getProgress();
+//        hsv[1] = self.getSaturationSeekBar().getProgress() / 100.0f;
+//        hsv[2] = self.getValueSeekBar().getProgress() / 100.0f;
+
+        Color.colorToHSV(color, hsv);
+        System.out.println("hsv " + hsv[0] + ", " + hsv[1] + ", " + hsv[2]);
+//        int color = Color.HSVToColor(self.getAlphaSeekBar().getProgress(), hsv);
+        self.getColorView().setBackgroundColor(color);
+        self.getColorTitleLabel().setTextColor(VDColor.getInvertColor(color));
+        self.getInvertColorView().setBackgroundColor(VDColor.getInvertColor(color));
+        self.getInvertColorTitleLabel().setTextColor(color);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }

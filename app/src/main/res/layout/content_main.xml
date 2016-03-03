@@ -13,8 +13,106 @@
     tools:context="com.vilyever.androidcolor.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/seekLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:orientation="vertical"
+        >
+
+        <SeekBar
+            android:id="@+id/alphaSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/Black"
+            android:max="255"/>
+        <!--<SeekBar-->
+            <!--android:id="@+id/hueSeekBar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:thumbTint="@color/Red"-->
+            <!--android:max="359"/>-->
+        <!--<SeekBar-->
+            <!--android:id="@+id/saturationSeekBar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:thumbTint="@color/Green"-->
+            <!--android:max="100"/>-->
+        <!--<SeekBar-->
+            <!--android:id="@+id/valueSeekBar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:thumbTint="@color/Blue"-->
+            <!--android:max="100"/>-->
+        <SeekBar
+            android:id="@+id/redSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/Red"
+            android:max="255"/>
+        <SeekBar
+            android:id="@+id/greenSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/Green"
+            android:max="255"/>
+        <SeekBar
+            android:id="@+id/blueSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/Blue"
+            android:max="255"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/seekLayout"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/colorView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/colorTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:text="南边来了一个小和尚，Sing a song with 123~"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/invertColorView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/invertColorTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:text="南边来了一个小和尚，Sing a song with 123~"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

@@ -118,4 +118,11 @@ public class VDColor {
         return String.format("#%06X", (0xFFFFFF & color));
     }
 
+    public static int getInvertColor(int color) {
+        float hsv[] = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[0] = (hsv[0] + 180.0f) % 360.0f;
+        hsv[2] = 1.0f - hsv[2];
+        return Color.HSVToColor(Color.alpha(color), hsv);
+    }
 }
