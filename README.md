@@ -24,15 +24,15 @@ dependencies {
 ## Usage
 ```java
 
-int color = VDColor.res(R.color.White);
-color = VDColor.changeAlpha(color, 0xA0);
-color = VDColor.changeRed(color, 0x55);
-color = VDColor.changeGreen(color, 0x10);
-color = VDColor.changeBlue(color, 0xE0);
-color = VDColor.changeHSVHue(color, 288.0f);
-color = VDColor.changeHSVSaturation(color, 0.8f);
-color = VDColor.changeHSVValue(color, 0.3f);
-String hexColor = VDColor.getHex(color);
+int color = Colour.res(R.color.White);
+color = Colour.changeAlpha(color, 0xA0);
+color = Colour.changeRed(color, 0x55);
+color = Colour.changeGreen(color, 0x10);
+color = Colour.changeBlue(color, 0xE0);
+color = Colour.changeHSVHue(color, 288.0f);
+color = Colour.changeHSVSaturation(color, 0.8f);
+color = Colour.changeHSVValue(color, 0.3f);
+String hexColor = Colour.getHex(color);
 
 ```
 
