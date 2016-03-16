@@ -1,18 +1,17 @@
 package com.vilyever.color;
 
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 
-import com.vilyever.contextholder.VDContextHolder;
+import com.vilyever.resource.Resource;
 
 /**
- * VDColor
+ * Colour
  * AndroidColor <com.vilyever.color>
  * Created by vilyever on 2016/2/22.
  * Feature:
  */
-public class VDColor {
-    final VDColor self = this;
+public class Colour {
+    final Colour self = this;
 
     
     /* Public Methods */
@@ -23,7 +22,7 @@ public class VDColor {
      * @return color
      */
     public static int res(int resId) {
-        return ContextCompat.getColor(VDContextHolder.getContext(), resId);
+        return Resource.getColor(resId);
     }
 
     /**

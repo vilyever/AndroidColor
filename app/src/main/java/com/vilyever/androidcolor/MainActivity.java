@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.vilyever.color.VDColor;
+import com.vilyever.color.Colour;
 
 public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     final MainActivity self = this;
@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         System.out.println("hsv " + hsv[0] + ", " + hsv[1] + ", " + hsv[2]);
 //        int color = Color.HSVToColor(self.getAlphaSeekBar().getProgress(), hsv);
         self.getColorView().setBackgroundColor(color);
-        self.getColorTitleLabel().setTextColor(VDColor.getInvertColor(color));
-        self.getInvertColorView().setBackgroundColor(VDColor.getInvertColor(color));
+        self.getColorTitleLabel().setTextColor(Colour.getInvertColor(color));
+        self.getInvertColorView().setBackgroundColor(Colour.getInvertColor(color));
         self.getInvertColorTitleLabel().setTextColor(color);
     }
 
