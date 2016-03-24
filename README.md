@@ -1,3 +1,6 @@
+# Deprecated
+合并在[AndroidResource](https://github.com/vilyever/AndroidResource)
+
 # AndroidColor
 Android颜色工具，包含W3C定义的颜色
 
